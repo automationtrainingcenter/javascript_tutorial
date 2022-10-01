@@ -1,0 +1,35 @@
+// Technically, the switch statement is equivalent to the following  if...else...if statement
+// The switch statement uses the strict comparison (===) to compare the expression with the case values.
+
+let day = 4;
+let dayName = "";
+
+switch (day) {
+    case 1:
+        dayName = 'Sunday';
+        break;
+    case 2:
+        dayName = 'Monday';
+        break;
+    case 3:
+        dayName = 'Tuesday';
+        break;
+    case 4:
+        dayName = 'Wednesday';
+        break;
+    case 5:
+        dayName = 'Thursday';
+        break;
+    case 6:
+        dayName = 'Friday';
+        break;
+    case 7:
+        dayName = 'Saturday';
+        break;                
+    default:
+        dayName = 'Invalid Day'
+        break;
+}
+
+console.log(dayName);
+
