@@ -48,3 +48,7 @@ console.log(person);
 person.firstName='SURYA';
 console.log(person);
 console.log(employee);
+
+// We can get all the keys of a object using Object.keys() method
+console.log(Object.keys(person));
+

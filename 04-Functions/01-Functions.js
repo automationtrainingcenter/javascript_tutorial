@@ -148,3 +148,19 @@ let getPrice = function(price, tax = price * taxRate()) {
 
 let fullPrice = getPrice(100)
 console.log(fullPrice);
+
+// Callback hell: calling a call back function inside another and one in another or nested call backs in know as Callback hell.
+setTimeout(() => { // first call back function
+    console.log("1 second passed");
+    setTimeout(() => { // second call back function
+        console.log("2 seconds passed");
+        setTimeout(() => { // third call back function
+            console.log("3 seconds passed");
+            setTimeout(() => { // fourth
+                console.log("4 seconds passed");
+            }, 1000);
+        }, 1000);
+    }, 1000);
+}, 1000);
+
+// NOTE: Callback hell is bad way of coding we can overcome this issue by using promises.`
