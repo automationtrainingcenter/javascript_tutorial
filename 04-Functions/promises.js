@@ -26,33 +26,18 @@ let getCountry = function (data, className = "") {
 };
 
 let getCountryAndNeighbourData = function (countryName) {
-  // Get main country
-  let request = new XMLHttpRequest();
-  request.open("GET", `https://restcountries.com/v3.1/name/${countryName}`);
-  request.send();
-  request.addEventListener("load", function () {
-    // first call back to get given country details.
-    let [data] = JSON.parse(request.responseText); // destructuring array
-    console.log(data);
-    // render the main country
-    getCountry(data);
-
-    // Get neighbour country
-    let neighbourCouCode = data.borders?.[0];
-
-    request = new XMLHttpRequest();
-    request.open(
-      "GET",
-      `https://restcountries.com/v3.1/alpha/${neighbourCouCode}`
-    );
-    request.send();
-    request.addEventListener("load", function () {
-      // second call back function to get the neigbour country details.
-      let [response] = JSON.parse(request.responseText);
-      console.log(response);
-      getCountry(response, "neighbour");
-    });
-  });
+  // Get main country using fetch api
+  fetch(`https://restcountries.com/v3.1/name/${countryName}`)
+  .then((response) => response.json())
+  .then((data) => {
+    getCountry(data[0])
+    let neighbourCouCode = data[0].borders?.[0];
+    // Get neighbour country using fetch api`
+    return fetch(`https://restcountries.com/v3.1/alpha/${neighbourCouCode}`);
+  })
+  .then((response) => response.json())
+  .then((data) => getCountry(data[0], 'neighbour'));
+  
 };
 
 getCountryAndNeighbourData("canada");

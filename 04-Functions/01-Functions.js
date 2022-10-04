@@ -164,3 +164,8 @@ setTimeout(() => { // first call back function
 }, 1000);
 
 // NOTE: Callback hell is bad way of coding we can overcome this issue by using promises.`
+/*
+Promise is a objcect that is used as a placeholder which will store the future result in Asynchronous calls.
+Promise will have two states: pending and setteled.
+setteled status again will have fullfilled and rejected.
+*/
