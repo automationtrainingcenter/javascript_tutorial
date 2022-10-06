@@ -63,6 +63,15 @@ console.log(skills.indexOf('Python'));
 
 // verify the type of a variable is array or not
 console.log(Array.isArray(skills));
+
+// sorting in arrays
+nums = [1, 3, 4, 10, 11, 2];
+nums.sort((a, b) => a - b);
+console.log(nums);
+
+let names = ['abc', 'b', 'Cat', 'CAb', 'e', 'F'];
+names.sort();
+console.log(names);
     
 
 

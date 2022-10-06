@@ -169,3 +169,49 @@ Promise is a objcect that is used as a placeholder which will store the future r
 Promise will have two states: pending and setteled.
 setteled status again will have fullfilled and rejected.
 */
+
+// We can create a new promise using Promise constructor which takes a function known as executor function
+let lotteryPromise = new Promise(function(resolve, reject) {
+    setTimeout(() => {
+        if(Math.random() >= 0.5) {
+            resolve('You WON 💰');
+        } else {
+            reject(new Error('You lost the your money. 💩'));
+        }
+    }, 1000);   
+});
+
+// consume promise using then
+lotteryPromise.then(res => console.log(res)).catch(err => console.error(err));
+
+/*
+NOTE: class back functions will exist in call back queue and promises will exist in microtask queue.
+event loop will pick the statements from call back and microtask queues and loads them to Global execution stack.
+microtask queue will have the hight priority compared to call back queue.
+*/
+
+// create a wait promise for setTimeout to avoid the call back hell in line 153 
+let wait = function(seconds) {
+    return new Promise(function(resolve) {
+        setTimeout(resolve, seconds * 1000); // Promisifying
+    });
+}
+
+wait(1)
+.then(() => {
+    console.log('ONE second passed');
+    return wait(1);
+})
+.then(() => {
+    console.log('TWO seconds passed');
+    return wait(1);
+})
+.then(() => {
+    console.log('THREE seconds passed');
+    return wait(1);
+})
+.then(() => console.log('FOUR seconds passed'));
+
+// Promises with immediate resolve and reject
+Promise.resolve('Pass').then((res) => console.log(res));
+Promise.reject(new Error('Failed!')).catch((err) => console.error(err))
